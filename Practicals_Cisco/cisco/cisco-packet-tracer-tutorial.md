@@ -102,11 +102,3 @@ You can also test this with the simulation feature, if you would like to see thi
 If you would like to add more PC's to an already existing switch all you need to do is drag it in, connect and then update the PC configuration, you need to do the same subnet/default gateway but change the IPv4 address to a new end number as its a new connection.
 If you would like to add another switch with more PC's, then you will need to drag them in/set up connections. Then head back up to the router step, you want to repeat this but only for the `GigabitEthernet0/2`. Followed by setting up the computers.
 There you have it! I hope this tutorial was helpful and you learned how to get started.
-
-## Watch my tutorial on the process on YouTube
-
-<div style="text-align: center;">  
-  <div style="position: relative; height: 315px; width: 560px; margin: 0 auto;">  
-    <iframe src="Comming Soon..." style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-  </div>  
-</div>

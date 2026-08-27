@@ -2,16 +2,6 @@
 
 Introduction: Configuring a DHCP server is a fundamental skill for network administrators and engineers. In this blog post, we'll explore three video tutorials that walk you through DHCP server configuration using CISCO Packet Tracer. Whether you're dealing with a single switch, a router-based setup, or a complex network with multiple switches, you'll find step-by-step instructions to help you get started.
 
-## **Video 1: DHCP Server Configuration with a Single Switch**
-
-<div style="text-align: center;">  
-  <div style="position: relative; height: 315px; width: 560px; margin: 0 auto;">  
-    <iframe src="Comming Soon..." style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-  </div>  
-</div>
-
-In this video, you'll learn how to set up a DHCP server within CISCO Packet Tracer using a single switch. This tutorial simplifies the process, making it easy for beginners to understand and implement. 
-
 ### Here are the steps:
 
 1. Enable the CLI.
@@ -31,15 +21,6 @@ In this video, you'll learn how to set up a DHCP server within CISCO Packet Trac
 
 ![cisco-structure](../img/dhcp-setup-cisco-packet-tracer/img1.png)
 
-### **Video 2: Router-Based DHCP Server Configuration**
-
-<div style="text-align: center;">  
-  <div style="position: relative; height: 315px; width: 560px; margin: 0 auto;">  
-    <iframe src="https://www.youtube.com/embed/MWgWjkGP2gQ?si=pR_AxIyUCQl09xrr" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-  </div>  
-</div>
-
-In the second video, you'll discover how to configure a router to manage DHCP within CISCO Packet Tracer. This approach allows you to automatically assign IP addresses to connected devices.
 
 ### Here are the steps:
 
@@ -62,16 +43,6 @@ In the second video, you'll discover how to configure a router to manage DHCP wi
     - Define the network: `network 192.168.20.1 255.255.255.0`
 
 ![cisco-structure](../img/dhcp-setup-cisco-packet-tracer/img2.png)
-
-### **Video 3: DHCP Server Configuration with Multiple Switches**
-
-<div style="text-align: center;">  
-  <div style="position: relative; height: 315px; width: 560px; margin: 0 auto;">  
-    <iframe src="https://www.youtube.com/embed/orLhQDjYTvc?si=61igIQfS5ndnHhXM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-  </div>  
-</div>
-
-The third video guides you through setting up a home network with multiple switches and a dedicated DHCP server. This scenario mimics a more complex real-world environment.
 
 ### Follow these steps-
 
