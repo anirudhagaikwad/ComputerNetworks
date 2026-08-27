@@ -1,0 +1,8 @@
+[package]
+name = "peer-peer-con"
+version = "0.1.0"
+edition = "2024"
+authors = ["Anirudha Anil Gaikwad"]
+description = "P2P Chat — Computer Networks Practical (Rust)"
+
+[dependencies]

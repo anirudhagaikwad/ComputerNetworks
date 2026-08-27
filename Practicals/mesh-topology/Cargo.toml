@@ -1,0 +1,7 @@
+[package]
+name = "mesh-topology"
+version = "0.1.0"
+edition = "2024"
+authors = ["Anirudha Anil Gaikwad"]
+description = "P2P Mesh with Live Topology — Computer Networks Practical"
+[dependencies]

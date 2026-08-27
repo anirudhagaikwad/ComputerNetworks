@@ -1,1 +1,12 @@
  https://doi.org/10.5281/zenodo.21254339
+
+Networking isn't learned by reading alone — it's learned by building, breaking, and fixing networks with your own hands. This manual is designed to take you from your very first cable connection to configuring enterprise-grade routing protocols like OSPF, BGP, and EIGRP, the same technologies that power real-world ISPs, campuses, and data centers.
+
+Each experiment doesn't just tell you what to type — it explains the why behind every command, walks you through the underlying theory, and includes worked numerical examples so concepts like VLSM subnetting or OSPF cost calculation stop feeling abstract and start making sense. The viva questions at the end of every lab aren't just for exams — they're checkpoints to make sure you truly understand what you just built, not just copied.
+
+By the time you finish all 15 experiments, you won't just know Cisco IOS commands — you'll think like a network engineer: able to design an addressing scheme from scratch, choose the right routing protocol for a given topology, and troubleshoot a broken link with confidence. That skill is what separates a certificate on paper from real, interview-ready expertise.
+
+So don't just complete these labs — experiment. Break the configs on purpose. Ask "what if?" That curiosity is where real learning happens
+
+
+https://comp-networks.breezy-codes.com/cisco/tutorial-series/tutorial7.html
