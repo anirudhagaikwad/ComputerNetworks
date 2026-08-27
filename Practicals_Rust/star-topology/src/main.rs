@@ -3,9 +3,9 @@
 // Pure std library — no dependencies.
 //
 // Hub:   rustc p2p_star_topology.rs -o star
-//        ./star Hub hub 8000 Bob,Carol,Dave      (expected spoke names)
-// Spoke: ./star Bob spoke 127.0.0.1:8000
-//        ./star Carol spoke 127.0.0.1:8000
+//        ./star Hub hub 8000 Bubbu,Cairi,Anirudha      (expected spoke names)
+// Spoke: ./star Bubbu spoke 127.0.0.1:8000
+//        ./star Cairi spoke 127.0.0.1:8000
 //
 // Key property demonstrated: only the HUB sees the full topology.
 // Each SPOKE only ever knows the status of its OWN single link to the hub —
@@ -24,7 +24,10 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
         eprintln!("Usage:");
-        eprintln!("  Hub:   {} <name> hub <port> <expected_spoke_names_comma_separated>", args[0]);
+        eprintln!(
+            "  Hub:   {} <name> hub <port> <expected_spoke_names_comma_separated>",
+            args[0]
+        );
         eprintln!("  Spoke: {} <name> spoke <hub_ip:hub_port>", args[0]);
         std::process::exit(1);
     }
@@ -45,7 +48,10 @@ fn main() {
 
 fn run_hub(my_name: &str, args: &[String]) {
     if args.len() != 5 {
-        eprintln!("Usage: {} <name> hub <port> <expected_spoke_names_comma_separated>", args[0]);
+        eprintln!(
+            "Usage: {} <name> hub <port> <expected_spoke_names_comma_separated>",
+            args[0]
+        );
         std::process::exit(1);
     }
     let port = &args[3];
@@ -120,8 +126,14 @@ fn print_hub_topology(hub_name: &str, status: &Arc<Mutex<HashMap<String, bool>>>
     let mut active = 0;
     for name in &names {
         let c = *map.get(*name).unwrap();
-        if c { active += 1; }
-        println!("{:<15} {}", name, if c { "CONNECTED" } else { "disconnected" });
+        if c {
+            active += 1;
+        }
+        println!(
+            "{:<15} {}",
+            name,
+            if c { "CONNECTED" } else { "disconnected" }
+        );
     }
     println!("-----------------------------------");
     println!("Active spokes: {} / {}", active, names.len());
@@ -171,11 +183,16 @@ fn run_spoke(my_name: &str, args: &[String]) {
                     }
                 });
 
-                println!("Type a message + Enter (goes to Hub, relayed to other spokes). Type 'exit' to quit.\n");
+                println!(
+                    "Type a message + Enter (goes to Hub, relayed to other spokes). Type 'exit' to quit.\n"
+                );
                 let stdin = io::stdin();
                 let mut broken = false;
                 for line in stdin.lock().lines() {
-                    let msg = match line { Ok(m) => m, Err(_) => break };
+                    let msg = match line {
+                        Ok(m) => m,
+                        Err(_) => break,
+                    };
                     if msg.trim() == "exit" {
                         return;
                     }

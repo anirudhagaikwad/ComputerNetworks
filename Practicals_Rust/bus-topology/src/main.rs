@@ -16,9 +16,9 @@
 // nodes.
 //
 // Segment: rustc p2p_bus_topology.rs -o bus
-//          ./bus segment 6000 Alice,Bob,Carol      (expected station names)
-// Station: ./bus Alice station 127.0.0.1:6000
-//          ./bus Bob   station 127.0.0.1:6000
+//          ./bus segment 6000 Anirudha,Balably,Cairi      (expected station names)
+// Station: ./bus Anirudha station 127.0.0.1:6000
+//          ./bus Balably   station 127.0.0.1:6000
 
 use std::collections::HashMap;
 use std::env;
@@ -32,8 +32,14 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
         eprintln!("Usage:");
-        eprintln!("  Segment: {} segment <port> <expected_station_names_comma_separated>", args[0]);
-        eprintln!("  Station: {} <name> station <segment_ip:segment_port>", args[0]);
+        eprintln!(
+            "  Segment: {} segment <port> <expected_station_names_comma_separated>",
+            args[0]
+        );
+        eprintln!(
+            "  Station: {} <name> station <segment_ip:segment_port>",
+            args[0]
+        );
         std::process::exit(1);
     }
 
@@ -48,7 +54,10 @@ fn main() {
 
 fn run_segment(args: &[String]) {
     if args.len() != 4 {
-        eprintln!("Usage: {} segment <port> <expected_station_names_comma_separated>", args[0]);
+        eprintln!(
+            "Usage: {} segment <port> <expected_station_names_comma_separated>",
+            args[0]
+        );
         std::process::exit(1);
     }
     let port = &args[2];
@@ -72,7 +81,9 @@ fn run_segment(args: &[String]) {
             thread::spawn(move || {
                 let mut reader = BufReader::new(stream.try_clone().unwrap());
                 let mut line = String::new();
-                if reader.read_line(&mut line).unwrap_or(0) == 0 { return; }
+                if reader.read_line(&mut line).unwrap_or(0) == 0 {
+                    return;
+                }
                 let station_name = line.trim().to_string();
 
                 streams.lock().unwrap().insert(station_name.clone(), stream);
@@ -93,7 +104,9 @@ fn run_segment(args: &[String]) {
                                     dead.push(name.clone());
                                 }
                             }
-                            for d in dead { map.remove(&d); }
+                            for d in dead {
+                                map.remove(&d);
+                            }
                         }
                     }
                 }
@@ -106,11 +119,17 @@ fn run_segment(args: &[String]) {
     }
 }
 
-fn broadcast_topology(status: &Arc<Mutex<HashMap<String, bool>>>, streams: &Arc<Mutex<HashMap<String, TcpStream>>>) {
+fn broadcast_topology(
+    status: &Arc<Mutex<HashMap<String, bool>>>,
+    streams: &Arc<Mutex<HashMap<String, TcpStream>>>,
+) {
     let map = status.lock().unwrap();
     let mut names: Vec<&String> = map.keys().collect();
     names.sort();
-    let body: Vec<String> = names.iter().map(|n| format!("{}:{}", n, map.get(*n).unwrap())).collect();
+    let body: Vec<String> = names
+        .iter()
+        .map(|n| format!("{}:{}", n, map.get(*n).unwrap()))
+        .collect();
     let line = format!("TOPO {}\n", body.join(","));
     drop(map);
 
@@ -121,14 +140,19 @@ fn broadcast_topology(status: &Arc<Mutex<HashMap<String, bool>>>, streams: &Arc<
             dead.push(name.clone());
         }
     }
-    for d in dead { smap.remove(&d); }
+    for d in dead {
+        smap.remove(&d);
+    }
 }
 
 // ---------------- STATION ----------------
 
 fn run_station(args: &[String]) {
     if args.len() != 4 || args[2] != "station" {
-        eprintln!("Usage: {} <name> station <segment_ip:segment_port>", args[0]);
+        eprintln!(
+            "Usage: {} <name> station <segment_ip:segment_port>",
+            args[0]
+        );
         std::process::exit(1);
     }
     let my_name = args[1].clone();
@@ -166,12 +190,20 @@ fn run_station(args: &[String]) {
                     }
                 });
 
-                println!("[{}] Type a message + Enter to broadcast on the bus. Type 'exit' to quit.\n", my_name);
+                println!(
+                    "[{}] Type a message + Enter to broadcast on the bus. Type 'exit' to quit.\n",
+                    my_name
+                );
                 let stdin = io::stdin();
                 let mut broken = false;
                 for line in stdin.lock().lines() {
-                    let msg = match line { Ok(m) => m, Err(_) => break };
-                    if msg.trim() == "exit" { return; }
+                    let msg = match line {
+                        Ok(m) => m,
+                        Err(_) => break,
+                    };
+                    if msg.trim() == "exit" {
+                        return;
+                    }
                     let full = format!("MSG {}: {}\n", my_name, msg);
                     if stream.write_all(full.as_bytes()).is_err() {
                         broken = true;
@@ -201,10 +233,18 @@ fn print_bus_topology(my_name: &str, body: &str) {
     let mut active = 0;
     for entry in body.split(',') {
         let parts: Vec<&str> = entry.splitn(2, ':').collect();
-        if parts.len() != 2 { continue; }
+        if parts.len() != 2 {
+            continue;
+        }
         let up = parts[1] == "true";
-        if up { active += 1; }
-        println!("{:<15} {}", parts[0], if up { "CONNECTED" } else { "disconnected" });
+        if up {
+            active += 1;
+        }
+        println!(
+            "{:<15} {}",
+            parts[0],
+            if up { "CONNECTED" } else { "disconnected" }
+        );
     }
     println!("-----------------------------------");
     println!("Active on bus: {}\n", active);
